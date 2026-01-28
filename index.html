@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Website</title>
+    <title>Christian Calle | Personal Website</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,70 +16,132 @@
         header {
             background: #2c3e50;
             color: #fff;
-            padding: 2rem;
+            padding: 2.5rem 1rem;
             text-align: center;
         }
+        
+        /* Navigation Tabs */
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #34495e;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        nav button:hover { background: #1abc9c; }
+        nav button.active { background: #1abc9c; font-weight: bold; }
+
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
-        section {
+
+        /* Tab Logic: Hide sections by default */
+        .tab-content {
+            display: none; 
             background: white;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
+            padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        h2 { color: #2c3e50; }
-        footer { text-align: center; margin-top: 2rem; font-size: 0.9rem; color: #666; }
+        .tab-content.active { display: block; }
+
+        .profile-flex {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        h2 { color: #2c3e50; margin-top: 0; }
+        footer { text-align: center; margin-top: 3rem; padding: 1rem; font-size: 0.9rem; color: #666; }
+        
+        a { color: #1abc9c; text-decoration: none; }
+        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Christian Calle</h1>
-        <p> PhD Student | Researcher </p>
+        <p>PhD Student | Researcher</p>
     </header>
 
+    <nav>
+        <button class="tab-link active" onclick="openTab(event, 'about')">About Me</button>
+        <button class="tab-link" onclick="openTab(event, 'research')">Research</button>
+        <button class="tab-link" onclick="openTab(event, 'collaborators')">Collaborators</button>
+        <button class="tab-link" onclick="openTab(event, 'cv')">Curriculum</button>
+    </nav>
+
     <div class="container">
-        <section id="about" style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 200px; text-align: center;">
-        <img src="perfil.jpeg" alt="My Profile Photo" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 3px solid #2c3e50;">
-    </div>
-    <div style="flex: 2; min-width: 300px;">
-            <h2>About Me</h2> 
-            <p>I am Christian Calle, a Ph.D. Student at the Doctoral Consortium of Valparaíso, a program jointly offered by the Universidad Técnica Federico Santa María, the Pontificia Universidad Católica de Valparaíso, and the Universidad de Valparaíso. 
-           </div>     
-        </section>
-
-
-
         
-        <section id="Interest">
-            <h2>Research interests:</h2>
-            <ul>
-                <li>I am interested in <strong>control theory</strong>, specifically the controllability and stabilization of partial differential equations.</li>
-            </ul>
+        <div id="about" class="tab-content active">
+            <div class="profile-flex">
+                <div style="flex: 1; min-width: 200px; text-align: center;">
+                    <img src="perfil.jpeg" alt="Christian Calle" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 3px solid #2c3e50;">
+                </div>
+                <div style="flex: 2; min-width: 300px;">
+                    <h2>About Me</h2>
+                    <p>I am Christian Calle, a Ph.D. Student at the Doctoral Consortium of Valparaíso, a program jointly offered by the Universidad Técnica Federico Santa María, the Pontificia Universidad Católica de Valparaíso, and the Universidad de Valparaíso.</p>
+                    <p>This site serves as a digital portfolio for my work and academic progress.</p>
+                    <p><strong>Contact:</strong> <a href="mailto:christiancalle141@gmail.com">christiancalle141@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
 
-            <h2>Advisors:</h2>
-            <ul>
-                <li>Patricio Guzmán (Universidad Técnica Federico Santa María)</li>
-                <li>Hugo Parada (Inria Nancy-Grand Est )</li>
-            </ul>
-        </section>
+        <div id="research" class="tab-content">
+            <h2>Research Interests</h2>
+            <p>I am interested in <strong>control theory</strong>, specifically the controllability and stabilization of partial differential equations (PDEs).</p>
+            </div>
 
- This site serves as a digital portfolio for my work.</p>
-        
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Feel free to reach out via christiancalle141@gmail.com.</p>
-        </section>
+        <div id="collaborators" class="tab-content">
+            <h2>Advisors & Collaborators</h2>
+            <ul>
+                <li><strong>Patricio Guzmán</strong> (Universidad Técnica Federico Santa María)</li>
+                <li><strong>Hugo Parada</strong> (Inria Nancy-Grand Est)</li>
+            </ul>
+        </div>
+
+        <div id="cv" class="tab-content">
+            <h2>Curriculum Vitae</h2>
+            <p>Details regarding my academic background and professional experience.</p>
+            <ul>
+                <li><strong>PhD in Mathematics</strong> (In Progress) - Doctoral Consortium of Valparaíso</li>
+                </ul>
+            <p><em>Tip: You can upload a PDF of your CV to your GitHub repo and link it here.</em></p>
+        </div>
+
     </div>
 
     <footer>
-        <p>&copy; 2026 | Built with GitHub Pages</p>
+        <p>&copy; 2026 | Christian Calle | Built with GitHub Pages</p>
     </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var content = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < content.length; i++) {
+                content[i].classList.remove("active");
+            }
+            var links = document.getElementsByClassName("tab-link");
+            for (var i = 0; i < links.length; i++) {
+                links[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
 
 </body>
 </html>
