@@ -28,6 +28,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            flex-wrap: wrap; /* Allows buttons to wrap on small screens */
         }
         nav button {
             background: none;
@@ -37,6 +38,8 @@
             cursor: pointer;
             font-size: 1rem;
             transition: 0.3s;
+            flex: 1; /* Buttons grow to fill space on mobile */
+            min-width: 100px;
         }
         nav button:hover { background: #1abc9c; }
         nav button.active { background: #1abc9c; font-weight: bold; }
@@ -47,7 +50,7 @@
             padding: 0 1rem;
         }
 
-        /* Tab Logic: Hide sections by default */
+        /* Tab Logic */
         .tab-content {
             display: none; 
             background: white;
@@ -63,11 +66,33 @@
             gap: 20px;
             flex-wrap: wrap;
         }
+        
         h2 { color: #2c3e50; margin-top: 0; }
         footer { text-align: center; margin-top: 3rem; padding: 1rem; font-size: 0.9rem; color: #666; }
         
         a { color: #1abc9c; text-decoration: none; }
         a:hover { text-decoration: underline; }
+
+        /* --- MOBILE RESPONSIVE FIX --- */
+        @media screen and (max-width: 600px) {
+            .profile-flex {
+                flex-direction: column; /* Stacks image on top of text */
+                text-align: center;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                margin: 1rem auto;
+            }
+
+            nav button {
+                padding: 0.8rem 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -92,7 +117,7 @@
                 </div>
                 <div style="flex: 2; min-width: 300px;">
                     <h2>About Me</h2>
-                    <p>I am Christian Calle, a Ph.D. student originally from Celica, Loja, Ecuador. Since March 2024, I have been part of the Doctoral Consortium of Valparaíso, a collaborative program between <a href="https://usm.cl/" target="_blank"><strong>UTFSM</strong></a>,<a href="https://www.pucv.cl/" target="_blank"><strong>PUCV</strong></a>, and <a href="https://www.uv.cl/" target="_blank"><strong>UV</strong></a>. My doctoral research is conducted under the supervision of <a href="http://pguzman.mat.utfsm.cl/" target="_blank"><strong>Patricio Guzmán</strong></a> and <a href="https://sites.google.com/view/hugo-parada" target="_blank"><strong>Hugo Parada</strong></a>.</p>
+                    <p>I am Christian Calle, a Ph.D. student originally from Celica, Loja, Ecuador. Since March 2024, I have been part of the Doctoral Consortium of Valparaíso, a collaborative program between <a href="https://usm.cl/" target="_blank"><strong>UTFSM</strong></a>, <a href="https://www.pucv.cl/" target="_blank"><strong>PUCV</strong></a>, and <a href="https://www.uv.cl/" target="_blank"><strong>UV</strong></a>. My doctoral research is conducted under the supervision of <a href="http://pguzman.mat.utfsm.cl/" target="_blank"><strong>Patricio Guzmán</strong></a> and <a href="https://sites.google.com/view/hugo-parada" target="_blank"><strong>Hugo Parada</strong></a>.</p>
                     <p><strong>Contact:</strong> <a href="mailto:christiancalle141@gmail.com">christiancalle141@gmail.com</a></p>
                 </div>
             </div>
@@ -101,15 +126,13 @@
         <div id="research" class="tab-content">
             <h2>Research Interests</h2>
             <p>I am interested in <strong>control theory</strong>, specifically the controllability and stabilization of partial differential equations (PDEs).</p>
-            </div>
+        </div>
 
         <div id="collaborators" class="tab-content">
             <h2>Advisors & Collaborators</h2>
             <ul>
-                <li>
-                    <a href="http://pguzman.mat.utfsm.cl/" target="_blank"><strong>Patricio Guzmán</strong></a> (Universidad Técnica Federico Santa María)</li>
-                <li>
-                    <a href="https://sites.google.com/view/hugo-parada" target="_blank"><strong>Hugo Parada</strong></a> (Inria Nancy-Grand Est)</li>
+                <li><a href="http://pguzman.mat.utfsm.cl/" target="_blank"><strong>Patricio Guzmán</strong></a> (Universidad Técnica Federico Santa María)</li>
+                <li><a href="https://sites.google.com/view/hugo-parada" target="_blank"><strong>Hugo Parada</strong></a> (Inria Nancy-Grand Est)</li>
             </ul>
         </div>
 
@@ -118,8 +141,8 @@
             <p>Details regarding my academic background and professional experience.</p>
             <ul>
                 <li><strong>PhD in Mathematics</strong> (In Progress) - Doctoral Consortium of Valparaíso</li>
-                </ul>
-            <p><em>site in construction.</em></p>
+            </ul>
+            <p><em>Site in construction.</em></p>
         </div>
 
     </div>
