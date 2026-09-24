@@ -1,271 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christian A. Calle  Cárdenas</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        header {
-            background: #2c3e50;
-            color: #fff;
-            padding: 2.5rem 1rem;
-            text-align: center;
-        }
-        
-        /* Navigation Tabs */
-        nav {
-            display: flex;
-            justify-content: center;
-            background: #34495e;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            flex-wrap: wrap; /* Allows buttons to wrap on small screens */
-        }
-        nav button {
-            background: none;
-            border: none;
-            color: white;
-            padding: 1rem 1.5rem;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: 0.3s;
-            flex: 1; /* Buttons grow to fill space on mobile */
-            min-width: 100px;
-        }
-        nav button:hover { background: #1abc9c; }
-        nav button.active { background: #1abc9c; font-weight: bold; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christian A. Calle Cárdenas</title>
+<meta name="description" content="Ph.D. student in Mathematics. Control theory and PDEs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0e1b2c; --ink-2:#16283f; --sea:#2bb3a3; --sea-deep:#0f7f74;
+  --bg:#f5f6f8; --surface:#ffffff; --text:#1c2733; --muted:#5b6876; --rule:#d9dee5; --link:#0f7f74;
+  --serif:'Newsreader',Georgia,'Times New Roman',serif;
+  --sans:'IBM Plex Sans','Segoe UI',Tahoma,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0b1420;--surface:#111e2e;--text:#e3e9ef;--muted:#93a1b0;--rule:#22344a;--link:#5fd4c5}
+}
+:root[data-theme="dark"]{--bg:#0b1420;--surface:#111e2e;--text:#e3e9ef;--muted:#93a1b0;--rule:#22344a;--link:#5fd4c5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--serif);font-size:1.15rem;line-height:1.7}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--sea);outline-offset:3px;border-radius:2px}
 
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
+/* Hero */
+header{background:linear-gradient(160deg,var(--ink) 0%,var(--ink-2) 100%);color:#eef3f7;position:relative;overflow:hidden}
+.hero{max-width:1000px;margin:0 auto;padding:4rem 1.5rem 3rem;display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:center}
+.hero h1{font-weight:400;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.08;margin:0 0 1rem;letter-spacing:-.01em}
+.hero p{margin:0 0 .4rem;font-size:1.2rem;color:#c5d2de}
+.hero .meta{font-family:var(--sans);font-size:.92rem;color:#8fa3b6;margin-top:1.2rem}
+.hero .meta a{color:#7fe0d2}
+#heat{width:100%;height:220px;display:block}
+.theme{position:absolute;top:.8rem;right:1rem;background:none;border:1px solid #3a516b;color:#c5d2de;font:500 .8rem var(--sans);padding:.3rem .7rem;border-radius:999px;cursor:pointer}
+.theme:hover{border-color:var(--sea);color:#fff}
 
-        /* Tab Logic */
-        .tab-content {
-            display: none; 
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .tab-content.active { display: block; }
+/* Nav */
+nav{position:sticky;top:0;z-index:10;background:var(--surface);border-bottom:1px solid var(--rule)}
+nav .in{max-width:1000px;margin:0 auto;padding:0 1rem;display:flex;overflow-x:auto}
+nav button{background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:500 .98rem var(--sans);padding:1rem 1.2rem;cursor:pointer;white-space:nowrap}
+nav button:hover{color:var(--text)}
+nav button[aria-selected="true"]{color:var(--text);border-bottom-color:var(--sea)}
 
-        .profile-flex {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        h2 { color: #2c3e50; margin-top: 0; }
-        footer { text-align: center; margin-top: 3rem; padding: 1rem; font-size: 0.9rem; color: #666; }
-        
-        a { color: #1abc9c; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+/* Content */
+main{max-width:1000px;margin:0 auto;padding:2.5rem 1.5rem 1rem}
+section{display:none;max-width:760px}
+section.active{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0}to{opacity:1}}
+h2{font-weight:600;font-size:1.9rem;line-height:1.2;margin:0 0 1rem}
+h3{font-family:var(--sans);font-weight:600;font-size:1rem;color:var(--muted);margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule)}
+h4{font-family:var(--sans);font-size:.95rem;margin:1.2rem 0 .3rem}
+ul{padding-left:1.2rem;margin:.4rem 0}
+li{margin:.35rem 0}
+.about{display:flex;gap:2rem;align-items:flex-start}
+.about img{width:170px;height:170px;border-radius:50%;object-fit:cover;flex:none;border:3px solid var(--sea)}
+.pubs{list-style:none;padding:0}
+.pubs li{display:grid;grid-template-columns:3.5rem 1fr;gap:.5rem;margin:.9rem 0}
+.pubs .y{font-family:var(--sans);color:var(--muted);font-size:.95rem;padding-top:.15rem}
+.entry{margin:0 0 1.4rem}
+.entry .where{font-family:var(--sans);font-size:.9rem;color:var(--muted)}
+.entry ul{font-size:1.05rem}
+.small li{font-size:1.02rem}
+footer{max-width:1000px;margin:2rem auto 0;padding:1.5rem;border-top:1px solid var(--rule);font:.85rem var(--sans);color:var(--muted)}
 
-        /* --- MOBILE RESPONSIVE FIX --- */
-        @media screen and (max-width: 600px) {
-            .profile-flex {
-                flex-direction: column; /* Stacks image on top of text */
-                text-align: center;
-            }
-            
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-            .container {
-                margin: 1rem auto;
-            }
-
-            nav button {
-                padding: 0.8rem 0.5rem;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+@media (max-width:720px){
+  .hero{grid-template-columns:1fr;padding:3.2rem 1.2rem 1.5rem}
+  #heat{height:150px}
+  .about{flex-direction:column;align-items:center;text-align:center}
+  .pubs li{grid-template-columns:1fr;gap:0}
+  body{font-size:1.08rem}
+}
+@media (prefers-reduced-motion:reduce){section.active{animation:none}html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>Christian Calle</h1>
-    </header>
+<header>
+  <button class="theme" id="themeBtn" type="button" aria-label="Toggle light or dark theme">Theme</button>
+  <div class="hero">
+    <div>
+      <h1>Christian A. Calle Cárdenas</h1>
+      <p>Ph.D. student in Mathematics. I study the controllability and stabilization of partial differential equations.</p>
+      <p class="meta">Doctoral Consortium of Valparaíso (UTFSM, PUCV, UV), Chile<br>
+      <a href="#collaborators" data-tab="collaborators">Advisors: P. Guzmán and H. Parada</a></p>
+    </div>
+    <canvas id="heat" role="img" aria-label="Animation of a heat equation solution decaying rapidly to zero under feedback control"></canvas>
+  </div>
+</header>
 
-    <nav>
-        <button class="tab-link active" onclick="openTab(event, 'about')">About Me</button>
-        <button class="tab-link" onclick="openTab(event, 'research')">Research</button>
-        <button class="tab-link" onclick="openTab(event, 'collaborators')">Collaborators</button>
-        <button class="tab-link" onclick="openTab(event, 'cv')">Curriculum</button>
-    </nav>
+<nav aria-label="Sections">
+  <div class="in" role="tablist">
+    <button role="tab" id="t-about" aria-controls="about" aria-selected="true" data-tab="about">About</button>
+    <button role="tab" id="t-research" aria-controls="research" aria-selected="false" data-tab="research">Research</button>
+    <button role="tab" id="t-collaborators" aria-controls="collaborators" aria-selected="false" data-tab="collaborators">Collaborators</button>
+    <button role="tab" id="t-cv" aria-controls="cv" aria-selected="false" data-tab="cv">Curriculum</button>
+  </div>
+</nav>
 
-    <div class="container">
-        
-        <div id="about" class="tab-content active">
-            <div class="profile-flex">
-                <div style="flex: 1; min-width: 200px; text-align: center;">
-                    <img src="perfil.jpeg" alt="Christian Calle" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 3px solid #2c3e50;">
-                </div>
-                <div style="flex: 2; min-width: 300px;">
-                    <h2>About Me</h2>
-                    <p>I am Christian Calle, a Ph.D. student originally from Celica, Loja, Ecuador. Since March 2024, I have been part of the Doctoral Consortium of Valparaíso, a collaborative program between <a href="https://usm.cl/" target="_blank"><strong>UTFSM</strong></a>, <a href="https://www.pucv.cl/" target="_blank"><strong>PUCV</strong></a>, and <a href="https://www.uv.cl/" target="_blank"><strong>UV</strong></a>. My doctoral research is conducted under the supervision of <a href="http://pguzman.mat.utfsm.cl/" target="_blank"><strong>Patricio Guzmán</strong></a> and <a href="https://sites.google.com/view/hugo-parada" target="_blank"><strong>Hugo Parada</strong></a>.</p>
-                    <p><strong>Contact:</strong> christiancalle141[at]gmail.com, ccalle[at]usm.cl</p>
-                </div>
-            </div>
-        </div>
+<main>
+  <section id="about" class="active" role="tabpanel" aria-labelledby="t-about">
+    <div class="about">
+      <img src="perfil.jpeg" alt="Christian Calle">
+      <div>
+        <h2>About me</h2>
+        <p>I am a Ph.D. student originally from Celica, Loja, Ecuador. Since March 2024, I have been part of the Doctoral Consortium of Valparaíso, a collaborative program between <a href="https://usm.cl/" target="_blank" rel="noopener">UTFSM</a>, <a href="https://www.pucv.cl/" target="_blank" rel="noopener">PUCV</a> and <a href="https://www.uv.cl/" target="_blank" rel="noopener">UV</a>. My doctoral research is supervised by <a href="http://pguzman.mat.utfsm.cl/" target="_blank" rel="noopener">Patricio Guzmán</a> and <a href="https://sites.google.com/view/hugo-parada" target="_blank" rel="noopener">Hugo Parada</a>.</p>
+        <p><strong>Contact:</strong> christiancalle141[at]gmail.com, ccalle[at]usm.cl</p>
+      </div>
+    </div>
+  </section>
 
-        <div id="research" class="tab-content">
-            <h2>Research Interests</h2>
-            <p>I am interested in <strong>control theory</strong>, specifically the controllability and stabilization of partial differential equations (PDEs).</p>
-            <h2>Publications</h2>
-            <h3>Preprints</h3>
-            <ul>
-                <li> 2025 <strong>C. Calle, </strong><a href="http://pguzman.mat.utfsm.cl/" target="_blank"><strong>P. Guzmán</strong></a>, <a href="https://sites.google.com/view/hugo-parada" target="_blank"><strong>H. Parada</strong></a>, <em>Rapid stabilization of the heat equation with localized disturbance.</em> Submitted. <a href="https://hal.science/hal-05421864v1/document" target="_blank"><em>Preprint version</strong></em></a>. </li>
-            </ul>
-           <h3>Research Articles </h3>  
-            <ul>
-               <li> 2024 <strong>J. Mayorga-Zambrano, </strong> <Strong> C. Calle</Strong>, <strong>J. Castillo-Jaramillo</strong>, <a href="https://hal.science/hal-04919733/document" target="_blank"><em>m-Biharmonic Kirchhoff-type equation with singularityand critical exponent.</em></a>.<em> Bulletin of Computational AppliedMathematics.</em> </li>
-            </ul>
-            <h3>Conference Articles   </h3>
-            <ul>
-               <li> 2022 <strong>G. Tapia, </strong><strong>L. Riera, </strong>  <Strong> C. Calle</Strong>, <strong>I. Amaro</strong>,  <strong>S. Infante</strong>, <a href="https://link.springer.com/chapter/10.1007/978-3-031-18272-3_11" target="_blank"><em>Assessing the COVID-19 Vaccination Process via Functional Data Analysis.</em></a>.<em> Information and Communication Technologies. TICEC 2022. Communications in Computer and Information Science</em> </li>
-            </ul>
-        </div>
+  <section id="research" role="tabpanel" aria-labelledby="t-research">
+    <h2>Research</h2>
+    <p>I am interested in <strong>control theory</strong>, specifically the controllability and stabilization of partial differential equations (PDEs).</p>
 
-        <div id="collaborators" class="tab-content">
-            <h2>Advisors</h2>
-            <ul>
-                <li><a href="http://pguzman.mat.utfsm.cl/" target="_blank"><strong>Patricio Guzmán</strong></a> (Universidad Técnica Federico Santa María) </li>
-                <li><a href="https://sites.google.com/view/hugo-parada" target="_blank"><strong>Hugo Parada</strong></a> (Inria Nancy-Grand Est)</li>
-            </ul>
-        </div>
+    <h3>Preprints</h3>
+    <ul class="pubs">
+      <li><span class="y">2025</span><span><strong>C. Calle</strong>, <a href="http://pguzman.mat.utfsm.cl/" target="_blank" rel="noopener">P. Guzmán</a>, <a href="https://sites.google.com/view/hugo-parada" target="_blank" rel="noopener">H. Parada</a>. <em>Rapid stabilization of the heat equation with localized disturbance.</em> Submitted. <a href="https://hal.science/hal-05421864v1/document" target="_blank" rel="noopener">Preprint</a>.</span></li>
+    </ul>
 
-        <div id="cv" class="tab-content">
-    <h2>Curriculum Vitae</h2>
+    <h3>Research articles</h3>
+    <ul class="pubs">
+      <li><span class="y">2024</span><span>J. Mayorga-Zambrano, <strong>C. Calle</strong>, J. Castillo-Jaramillo. <a href="https://hal.science/hal-04919733/document" target="_blank" rel="noopener"><em>m-Biharmonic Kirchhoff-type equation with singularity and critical exponent.</em></a> Bulletin of Computational Applied Mathematics.</span></li>
+    </ul>
+
+    <h3>Conference articles</h3>
+    <ul class="pubs">
+      <li><span class="y">2022</span><span>G. Tapia, L. Riera, <strong>C. Calle</strong>, I. Amaro, S. Infante. <a href="https://link.springer.com/chapter/10.1007/978-3-031-18272-3_11" target="_blank" rel="noopener"><em>Assessing the COVID-19 Vaccination Process via Functional Data Analysis.</em></a> Information and Communication Technologies. TICEC 2022. Communications in Computer and Information Science.</span></li>
+    </ul>
+  </section>
+
+  <section id="collaborators" role="tabpanel" aria-labelledby="t-collaborators">
+    <h2>Advisors</h2>
+    <ul>
+      <li><a href="http://pguzman.mat.utfsm.cl/" target="_blank" rel="noopener">Patricio Guzmán</a>, Universidad Técnica Federico Santa María</li>
+      <li><a href="https://sites.google.com/view/hugo-parada" target="_blank" rel="noopener">Hugo Parada</a>, Inria Nancy-Grand Est</li>
+    </ul>
+  </section>
+
+  <section id="cv" role="tabpanel" aria-labelledby="t-cv">
+    <h2>Curriculum vitae</h2>
 
     <h3>Education</h3>
-    <div style="margin-bottom: 20px;">
-        <strong>Ph.D. Student in Mathematics</strong><br>
-        <em>Consortium USM - PUCV - UV | Valparaíso, Chile | 2024 - Present</em>
-        <ul>
-            <li>Primary Research Area: Control Theory and Inverse Problems.</li>
-            <li>Advisors: <a href="http://pguzman.mat.utfsm.cl/" target="_blank"><strong>Patricio Guzmán</strong></a> and <a href="https://sites.google.com/view/hugo-parada" target="_blank"><strong>Hugo Parada</strong></a> </li>
-        </ul>
+    <div class="entry">
+      <strong>Ph.D. Student in Mathematics</strong>
+      <div class="where">Consortium USM, PUCV, UV. Valparaíso, Chile. 2024 to present</div>
+      <ul>
+        <li>Primary research area: control theory and inverse problems.</li>
+        <li>Advisors: <a href="http://pguzman.mat.utfsm.cl/" target="_blank" rel="noopener">Patricio Guzmán</a> and <a href="https://sites.google.com/view/hugo-parada" target="_blank" rel="noopener">Hugo Parada</a>.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <strong>Bachelor of Science in Mathematics</strong>
+      <div class="where">Yachay Tech University. Urcuquí, Ecuador. 2018 to 2023</div>
     </div>
 
-    <div style="margin-bottom: 20px;">
-        <strong>Bachelor of Science in Mathematics </strong><br>
-        <em>Yachay Tech University | Urcuquí, Ecuador | 2018 - 2023</em>
+    <h3>Research and professional experience</h3>
+    <div class="entry">
+      <strong>Visiting Student</strong>
+      <div class="where">Institut de Mathématiques de Toulouse. Toulouse, France. May to Aug 2025</div>
+      <ul>
+        <li>Research stay under the supervision of Dr. Hugo Parada.</li>
+        <li>Collaborated on mathematical research projects within the doctoral framework.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <strong>Researcher, Research Project</strong>
+      <div class="where">Yachay Tech University. Urcuquí, Ecuador. Jan 2025 to Dec 2026</div>
+      <ul>
+        <li>Project: "Existence of solutions for elliptic equations involving non-local operators."</li>
+        <li>Led by Dr. Juan Mayorga-Zambrano.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <strong>Mathematics Teacher</strong>
+      <div class="where">Unidad Educativa del Milenio Yachay (UEMY). Urcuquí, Ecuador. 2022 to 2023</div>
+      <ul><li>Taught 10th-grade mathematics within the national education program.</li></ul>
     </div>
 
-    <hr>
-
-    <h3>Research & Professional Experience</h3>
-    <div style="margin-bottom: 20px;">
-        <strong>Visiting Student</strong><br>
-        <em>Institut de Mathématiques de Toulouse | Toulouse, France | May 2025 – Aug 2025</em>
-        <ul>
-            <li>Research stay under the supervision of Dr. Hugo Parada.</li>
-            <li>Collaborated on mathematical research projects within the doctoral framework.</li>
-        </ul>
-    </div>
-
-    <div style="margin-bottom: 20px;">
-        <strong>Researcher - Research Project</strong><br>
-        <em>Yachay Tech University | Urcuquí, Ecuador | Jan 2025 – Dec 2026</em>
-        <ul>
-            <li>Project: "Existence of solutions for elliptic equations involving non-local operators."</li>
-            <li>Led by Dr. Juan Mayorga-Zambrano.</li>
-        </ul>
-    </div>
-
-    <div style="margin-bottom: 20px;">
-        <strong>Mathematics Teacher</strong><br>
-        <em> Unidad Educativa del Milenio Yachay (UEMY) | Urcuquí, Ecuador | 2022 – 2023</em>
-        <ul>
-            <li>Taught 10th-grade mathematics within the national education program.</li>
-        </ul>
-    </div>
-
-    <hr>
-
-    <h3>Teaching Assistantships</h3>
-    <p><em>Federico Santa María Technical University (USM), Chile</em></p>
+    <h3>Teaching assistantships</h3>
+    <div class="where" style="font-family:var(--sans);font-size:.9rem;color:var(--muted)">Federico Santa María Technical University (USM), Chile</div>
     <h4>Graduate courses</h4>
-    <ul>
-        <li>Control Theory (Lecturer and grading Assistant) - 2026-1</li>
-    </ul>
-    <h4>Undergradute courses</h4>
-    <ul>
-        <li>Differential Calculus (Lecturer Assistant) - 2026-2</li>
-        <li>Linear Algebra (Lecturer Assistant) - 2025-2</li>
-        <li>Mathematics I (Lecturer Assistant) — 2025-2 & 2024-2</li>
-        <li>Linear Algebra (Grading Assistant) — 2025-1</li>
-        <li>Mathematics II (Grading Assistant) — 2025-1</li>
-        <li>Pre-calculus (Lecturer Assistant) — 2024-2</li>
+    <ul class="small"><li>Control Theory (lecturer and grading assistant), 2026-1</li></ul>
+    <h4>Undergraduate courses</h4>
+    <ul class="small">
+      <li>Differential Calculus (lecturer assistant), 2026-2</li>
+      <li>Linear Algebra (lecturer assistant), 2025-2</li>
+      <li>Mathematics I (lecturer assistant), 2025-2 and 2024-2</li>
+      <li>Linear Algebra (grading assistant), 2025-1</li>
+      <li>Mathematics II (grading assistant), 2025-1</li>
+      <li>Pre-calculus (lecturer assistant), 2024-2</li>
     </ul>
 
-    <hr>
-
-    <h3>Additional Professional Background</h3>
-    <div style="margin-bottom: 15px;">
-        <strong>Freelance Mathematical Content Writer</strong><br>
-        <em>SoftAge Information Technology | Gurugram, India | 2023 – 2024</em>
-        <p style="font-size: 0.9rem; margin-top: 5px;">Drafted and edited mathematical problems for the training and validation of Artificial Intelligence models.</p>
+    <h3>Additional professional background</h3>
+    <div class="entry">
+      <strong>Freelance Mathematical Content Writer</strong>
+      <div class="where">SoftAge Information Technology. Gurugram, India. 2023 to 2024</div>
+      <ul><li>Drafted and edited mathematical problems for the training and validation of AI models.</li></ul>
+    </div>
+    <div class="entry">
+      <strong>Intern</strong>
+      <div class="where">Talov. Ibarra, Ecuador. 2021</div>
+      <ul><li>Data collection and processing for sign language recognition algorithms using Python.</li></ul>
     </div>
 
-    <div style="margin-bottom: 15px;">
-        <strong>Intern</strong><br>
-        <em>Talov | Ibarra, Ecuador | 2021</em>
-        <p style="font-size: 0.9rem; margin-top: 5px;">Data collection and processing for sign language recognition algorithms using Python.</p>
-    </div>
-
-    <hr>
-
-    <h3>Academic Events</h3>
-    <ul style="font-size: 0.95rem;">
-        <li><strong>JMZS 2026: </strong>XXXVIII Jornada de Matemática de la Zona Sur (Concepción, Chile) 
-        <li><strong>IPPhys2026 Summer School:</strong> Inverse Problems in the Physical Sciences (Puerto Varas, Chile).
-        <li><strong>SOMACHI 2025:</strong> (Vicuña, Chile).</li>
-        <li><strong>COMCA 2025:</strong> Capricorn Mathematical Congress (Antofagasta, Chile).</li>
-        <li><strong>Control of PDES and related topics 2025 Conference:</strong> (Toulouse, France).</li>
-        <li><strong>EUR MINT 2025 Summer School:</strong> Control, Inverse Problems and Spectral Theory (Toulouse, France).</li>
-        <li><strong>SOMACHI 2024:</strong> (Valdivia, Chile).</li>
-        <li><strong>IPCT Seminar:</strong> Inverse Problems and Control Theory (Santiago, Chile - Present).</li>
+    <h3>Academic events</h3>
+    <ul class="small">
+      <li><strong>JMZS 2026:</strong> XXXVIII Jornada de Matemática de la Zona Sur (Concepción, Chile).</li>
+      <li><strong>IPPhys2026 Summer School:</strong> Inverse Problems in the Physical Sciences (Puerto Varas, Chile).</li>
+      <li><strong>SOMACHI 2025</strong> (Vicuña, Chile).</li>
+      <li><strong>COMCA 2025:</strong> Capricorn Mathematical Congress (Antofagasta, Chile).</li>
+      <li><strong>Control of PDEs and related topics 2025 Conference</strong> (Toulouse, France).</li>
+      <li><strong>EUR MINT 2025 Summer School:</strong> Control, Inverse Problems and Spectral Theory (Toulouse, France).</li>
+      <li><strong>SOMACHI 2024</strong> (Valdivia, Chile).</li>
+      <li><strong>IPCT Seminar:</strong> Inverse Problems and Control Theory (Santiago, Chile). Ongoing.</li>
     </ul>
+  </section>
+</main>
 
-    <p style="text-align: center; margin-top: 20px; font-style: italic; color: #888;">Site under construction.</p>
-</div>
+<footer>&copy; 2026 Christian Calle. Site under construction.</footer>
 
-    </div>
+<script>
+/* Tabs (with URL hash support) */
+const tabs=[...document.querySelectorAll('[role="tab"]')], panels=[...document.querySelectorAll('section')];
+function show(name,push){
+  if(!document.getElementById(name))name='about';
+  tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===name));
+  panels.forEach(p=>p.classList.toggle('active',p.id===name));
+  if(push)history.replaceState(null,'','#'+name);
+}
+document.querySelectorAll('[data-tab]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();show(el.dataset.tab,true);if(el.tagName==='A')window.scrollTo({top:document.querySelector('nav').offsetTop-1})}));
+show(location.hash.slice(1),false);
 
-    <footer>
-        <p>&copy; 2026 | Christian Calle | Built with GitHub Pages (under construction)</p>
-    </footer>
+/* Theme toggle */
+const root=document.documentElement;
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const dark=getComputedStyle(root).getPropertyValue('--bg').trim()==='#0b1420';
+  root.setAttribute('data-theme',dark?'light':'dark');
+});
 
-    <script>
-        function openTab(evt, tabName) {
-            var content = document.getElementsByClassName("tab-content");
-            for (var i = 0; i < content.length; i++) {
-                content[i].classList.remove("active");
-            }
-            var links = document.getElementsByClassName("tab-link");
-            for (var i = 0; i < links.length; i++) {
-                links[i].classList.remove("active");
-            }
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-    </script>
-
+/* Hero: heat equation u_t = u_xx, Dirichlet on [0, pi], decaying to zero */
+(function(){
+  const c=document.getElementById('heat'),ctx=c.getContext('2d');
+  const A=[1,.55,.7,.3,.4], K=A.length, reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const u=(x,t)=>A.reduce((s,a,i)=>s+a*Math.exp(-(i+1)**2*t)*Math.sin((i+1)*x),0);
+  let W,H,dpr;
+  function size(){dpr=devicePixelRatio||1;W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+  function curve(t,color,lw,alpha){
+    ctx.globalAlpha=alpha;ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.beginPath();
+    const pad=14,mid=H/2,amp=(H/2-pad)/1.9;
+    for(let i=0;i<=160;i++){const x=Math.PI*i/160,px=pad+(W-2*pad)*i/160,py=mid-amp*u(x,t);i?ctx.lineTo(px,py):ctx.moveTo(px,py)}
+    ctx.stroke();ctx.globalAlpha=1;
+  }
+  function frame(t){
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle='#3a516b';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(14,H/2);ctx.lineTo(W-14,H/2);ctx.stroke();
+    [.02,.05,.1,.18].forEach((s,i)=>{if(t>s)curve(s,'#7fe0d2',1,.18+i*.05)});
+    curve(t,'#7fe0d2',2.4,1);
+  }
+  size();addEventListener('resize',()=>{size();frame(reduce?0:cur)});
+  let cur=0,start=null;
+  if(reduce){frame(0);return}
+  function loop(ts){
+    if(start===null)start=ts;
+    const T=(ts-start)/1000, cyc=T%7, hold=1.0, run=4.5;
+    cur=cyc<hold?0:Math.min(.5,(cyc-hold)/run*.5);
+    frame(cur);
+    ctx.globalAlpha=1;
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
 </body>
 </html>
