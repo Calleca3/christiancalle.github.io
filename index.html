@@ -228,7 +228,7 @@ function show(name,push){
   if(!document.getElementById(name))name='about';
   tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===name));
   panels.forEach(p=>p.classList.toggle('active',p.id===name));
-  if(push)history.replaceState(null,'','#'+name);
+  if(push){try{history.replaceState(null,'','#'+name)}catch(e){}}
 }
 document.querySelectorAll('[data-tab]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();show(el.dataset.tab,true);if(el.tagName==='A')window.scrollTo({top:document.querySelector('nav').offsetTop-1})}));
 show(location.hash.slice(1),false);
@@ -240,11 +240,13 @@ document.getElementById('themeBtn').addEventListener('click',()=>{
   root.setAttribute('data-theme',dark?'light':'dark');
 });
 
+</script>
+<script>
 /* Hero: heat equation u_t = u_xx, Dirichlet on [0, pi], decaying to zero */
 (function(){
   const c=document.getElementById('heat'),ctx=c.getContext('2d');
   const A=[1,.55,.7,.3,.4], K=A.length, reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const u=(x,t)=>A.reduce((s,a,i)=>s+a*Math.exp(-(i+1)**2*t)*Math.sin((i+1)*x),0);
+  const u=(x,t)=>A.reduce((s,a,i)=>s+a*Math.exp(-((i+1)*(i+1))*t)*Math.sin((i+1)*x),0);
   let W,H,dpr;
   function size(){dpr=devicePixelRatio||1;W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
   function curve(t,color,lw,alpha){
