@@ -3,28 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Christian A. Calle Cárdenas</title>
-<meta name="description" content="Ph.D. student in Mathematics. Control theory and PDEs.">
+<title>Christian A. Calle Cárdenas · Mathematics</title>
+<meta name="description" content="Christian A. Calle Cárdenas, Ph.D. student in Mathematics (USM, PUCV, UV, Chile). Controllability and stabilization of partial differential equations.">
+<meta name="author" content="Christian A. Calle Cárdenas">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Christian A. Calle Cárdenas">
+<meta property="og:description" content="Ph.D. student in Mathematics. Control theory and PDEs.">
+<meta property="og:image" content="perfil.jpeg">
+<meta name="theme-color" content="#0e1b2c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1b2c'/%3E%3Cpath d='M4 16c4-10 8-10 12 0s8 6 12 0' stroke='%237fe0d2' stroke-width='2.5' fill='none'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<script>
+/* Apply saved theme before first paint (avoids a flash of the wrong theme) */
+try{const t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}
+document.documentElement.classList.add('js');
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Person",
+  "name":"Christian A. Calle Cárdenas",
+  "jobTitle":"Ph.D. student in Mathematics",
+  "affiliation":{"@type":"CollegeOrUniversity","name":"Universidad Técnica Federico Santa María"},
+  "alumniOf":{"@type":"CollegeOrUniversity","name":"Yachay Tech University"},
+  "knowsAbout":["Control theory","Partial differential equations","Stabilization","Controllability"]
+}
+</script>
 <style>
 :root{
   --ink:#0e1b2c; --ink-2:#16283f; --sea:#2bb3a3; --sea-deep:#0f7f74;
-  --bg:#f5f6f8; --surface:#ffffff; --text:#1c2733; --muted:#5b6876; --rule:#d9dee5; --link:#0f7f74;
+  --bg:#f5f6f8; --surface:#ffffff; --text:#1c2733; --muted:#5b6876; --rule:#d9dee5; --link:#0f7f74; --chip:#e8f5f3;
   --serif:'Newsreader',Georgia,'Times New Roman',serif;
   --sans:'IBM Plex Sans','Segoe UI',Tahoma,Helvetica,Arial,sans-serif;
+  color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--bg:#0b1420;--surface:#111e2e;--text:#e3e9ef;--muted:#93a1b0;--rule:#22344a;--link:#5fd4c5}
+  :root:not([data-theme="light"]){--bg:#0b1420;--surface:#111e2e;--text:#e3e9ef;--muted:#93a1b0;--rule:#22344a;--link:#5fd4c5;--chip:#13302f;color-scheme:dark}
 }
-:root[data-theme="dark"]{--bg:#0b1420;--surface:#111e2e;--text:#e3e9ef;--muted:#93a1b0;--rule:#22344a;--link:#5fd4c5}
+:root[data-theme="dark"]{--bg:#0b1420;--surface:#111e2e;--text:#e3e9ef;--muted:#93a1b0;--rule:#22344a;--link:#5fd4c5;--chip:#13302f;color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--serif);font-size:1.15rem;line-height:1.7}
 a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}
 a:hover{text-decoration-thickness:2px}
 :focus-visible{outline:2px solid var(--sea);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-999px;top:.5rem;background:var(--surface);color:var(--text);padding:.4rem .8rem;z-index:20;font:500 .9rem var(--sans)}
+.skip:focus{left:.5rem}
 
 /* Hero */
 header{background:linear-gradient(160deg,var(--ink) 0%,var(--ink-2) 100%);color:#eef3f7;position:relative;overflow:hidden}
@@ -33,7 +59,10 @@ header{background:linear-gradient(160deg,var(--ink) 0%,var(--ink-2) 100%);color:
 .hero p{margin:0 0 .4rem;font-size:1.2rem;color:#c5d2de}
 .hero .meta{font-family:var(--sans);font-size:.92rem;color:#8fa3b6;margin-top:1.2rem}
 .hero .meta a{color:#7fe0d2}
+.figure{margin:0}
 #heat{width:100%;height:220px;display:block}
+.figure figcaption{font:.78rem var(--sans);color:#8fa3b6;text-align:right;margin-top:.3rem}
+.figure figcaption .ctl{color:#7fe0d2}
 .theme{position:absolute;top:.8rem;right:1rem;background:none;border:1px solid #3a516b;color:#c5d2de;font:500 .8rem var(--sans);padding:.3rem .7rem;border-radius:999px;cursor:pointer}
 .theme:hover{border-color:var(--sea);color:#fff}
 
@@ -43,11 +72,14 @@ nav .in{max-width:1000px;margin:0 auto;padding:0 1rem;display:flex;overflow-x:au
 nav button{background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:500 .98rem var(--sans);padding:1rem 1.2rem;cursor:pointer;white-space:nowrap}
 nav button:hover{color:var(--text)}
 nav button[aria-selected="true"]{color:var(--text);border-bottom-color:var(--sea)}
+html:not(.js) nav{display:none}
 
 /* Content */
-main{max-width:1000px;margin:0 auto;padding:2.5rem 1.5rem 1rem}
-section{display:none;max-width:760px}
-section.active{display:block;animation:in .35s ease}
+main{max-width:1000px;margin:0 auto;padding:2.5rem 1.5rem 1rem;scroll-margin-top:4rem}
+section{max-width:760px}
+.js section{display:none}
+.js section.active{display:block;animation:in .35s ease}
+html:not(.js) section{margin-bottom:3rem}
 @keyframes in{from{opacity:0}to{opacity:1}}
 h2{font-weight:600;font-size:1.9rem;line-height:1.2;margin:0 0 1rem}
 h3{font-family:var(--sans);font-weight:600;font-size:1rem;color:var(--muted);margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule)}
@@ -56,11 +88,16 @@ ul{padding-left:1.2rem;margin:.4rem 0}
 li{margin:.35rem 0}
 .about{display:flex;gap:2rem;align-items:flex-start}
 .about img{width:170px;height:170px;border-radius:50%;object-fit:cover;flex:none;border:3px solid var(--sea)}
+.contact{font-family:var(--sans);font-size:.95rem;margin-top:1.2rem}
+.contact div{margin:.2rem 0}
+.contact .k{color:var(--muted);display:inline-block;min-width:5.5rem}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:0;margin:.6rem 0 0;list-style:none}
+.chips li{margin:0;font:500 .82rem var(--sans);background:var(--chip);color:var(--text);padding:.2rem .65rem;border-radius:999px}
 .pubs{list-style:none;padding:0}
 .pubs li{display:grid;grid-template-columns:3.5rem 1fr;gap:.5rem;margin:.9rem 0}
 .pubs .y{font-family:var(--sans);color:var(--muted);font-size:.95rem;padding-top:.15rem}
 .entry{margin:0 0 1.4rem}
-.entry .where{font-family:var(--sans);font-size:.9rem;color:var(--muted)}
+.where{font-family:var(--sans);font-size:.9rem;color:var(--muted)}
 .entry ul{font-size:1.05rem}
 .small li{font-size:1.02rem}
 footer{max-width:1000px;margin:2rem auto 0;padding:1.5rem;border-top:1px solid var(--rule);font:.85rem var(--sans);color:var(--muted)}
@@ -69,40 +106,60 @@ footer{max-width:1000px;margin:2rem auto 0;padding:1.5rem;border-top:1px solid v
   .hero{grid-template-columns:1fr;padding:3.2rem 1.2rem 1.5rem}
   #heat{height:150px}
   .about{flex-direction:column;align-items:center;text-align:center}
+  .contact .k{min-width:0;margin-right:.3rem}
+  .chips{justify-content:center}
   .pubs li{grid-template-columns:1fr;gap:0}
   body{font-size:1.08rem}
 }
-@media (prefers-reduced-motion:reduce){section.active{animation:none}html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){.js section.active{animation:none}html{scroll-behavior:auto}}
+
+/* Print: show every section, drop the chrome — handy for printing the CV */
+@media print{
+  header .figure,.theme,nav,.skip{display:none!important}
+  header{background:none;color:#000}
+  .hero{display:block;padding:0 0 1rem}
+  .hero p,.hero .meta{color:#333}
+  .js section{display:block!important;animation:none}
+  section{page-break-inside:auto;margin-bottom:2rem}
+  a{color:#000}
+  body{background:#fff;color:#000;font-size:11pt}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header>
-  <button class="theme" id="themeBtn" type="button" aria-label="Toggle light or dark theme">Theme</button>
+  <button class="theme" id="themeBtn" type="button" aria-label="Switch to dark theme">Dark</button>
   <div class="hero">
     <div>
       <h1>Christian A. Calle Cárdenas</h1>
       <p>Ph.D. student in Mathematics. I study the controllability and stabilization of partial differential equations.</p>
-      <p class="meta">Doctoral Consortium of Valparaíso (UTFSM, PUCV, UV), Chile<br>
-      <a href="#collaborators" data-tab="collaborators">Advisors: P. Guzmán and H. Parada</a></p>
+      <p class="meta">Doctoral Consortium of Valparaíso (USM, PUCV, UV), Chile<br>
+      Advisors: <a href="http://pguzman.mat.utfsm.cl/" target="_blank" rel="noopener">P. Guzmán</a> and <a href="https://sites.google.com/view/hugo-parada" target="_blank" rel="noopener">H. Parada</a></p>
     </div>
-    <canvas id="heat" role="img" aria-label="Animation of a heat equation solution decaying rapidly to zero under feedback control"></canvas>
+    <figure class="figure">
+      <canvas id="heat" role="img" aria-label="Animation of the heat equation on an interval: a solution with feedback control decays to zero much faster than the uncontrolled one"></canvas>
+      <figcaption>u<sub>t</sub> = u<sub>xx</sub>: <span class="ctl">with feedback</span> vs. without</figcaption>
+    </figure>
   </div>
 </header>
 
 <nav aria-label="Sections">
   <div class="in" role="tablist">
     <button role="tab" id="t-about" aria-controls="about" aria-selected="true" data-tab="about">About</button>
-    <button role="tab" id="t-research" aria-controls="research" aria-selected="false" data-tab="research">Research</button>
-    <button role="tab" id="t-collaborators" aria-controls="collaborators" aria-selected="false" data-tab="collaborators">Collaborators</button>
-    <button role="tab" id="t-cv" aria-controls="cv" aria-selected="false" data-tab="cv">Curriculum</button>
+    <button role="tab" id="t-research" aria-controls="research" aria-selected="false" data-tab="research" tabindex="-1">Research</button>
+    <!-- Collaborators tab: uncomment together with the section below
+    <button role="tab" id="t-collaborators" aria-controls="collaborators" aria-selected="false" data-tab="collaborators" tabindex="-1">Collaborators</button>
+    -->
+    <button role="tab" id="t-cv" aria-controls="cv" aria-selected="false" data-tab="cv" tabindex="-1">Curriculum</button>
   </div>
 </nav>
 
-<main>
+<main id="main" tabindex="-1">
   <section id="about" class="active" role="tabpanel" aria-labelledby="t-about">
     <div class="about">
-      <img src="perfil.jpeg" alt="Christian Calle">
+      <img src="perfil.jpeg" alt="Portrait of Christian Calle" width="170" height="170" decoding="async">
       <div>
         <h2>About me</h2>
         <p>I am a Ph.D. student in Mathematics from Celica, Loja, Ecuador. Since March 2024 I have been part of the Doctoral Consortium of Valparaíso, a joint program of <a href="https://usm.cl/" target="_blank" rel="noopener">USM</a>, <a href="https://www.pucv.cl/" target="_blank" rel="noopener">PUCV</a> and <a href="https://www.uv.cl/" target="_blank" rel="noopener">UV</a>, under the supervision of <a href="http://pguzman.mat.utfsm.cl/" target="_blank" rel="noopener">Patricio Guzmán</a> and <a href="https://sites.google.com/view/hugo-parada" target="_blank" rel="noopener">Hugo Parada</a>.</p>
@@ -114,20 +171,16 @@ footer{max-width:1000px;margin:2rem auto 0;padding:1.5rem;border-top:1px solid v
           <div><span class="k">Email</span> christiancalle141 [at] gmail.com · ccalle [at] usm.cl</div>
         </div>
       </div>
+    </div>
   </section>
 
   <section id="research" role="tabpanel" aria-labelledby="t-research">
     <h2>Research</h2>
     <p>I am interested in <strong>control theory</strong>, specifically the controllability and stabilization of partial differential equations (PDEs).</p>
 
-   <!-- <p><h3>Preprints</h3>
-    <ul class="pubs">
-      <li><span class="y">2025</span><span><strong>C. Calle</strong>, <a href="http://pguzman.mat.utfsm.cl/" target="_blank" rel="noopener">P. Guzmán</a>, <a href="https://sites.google.com/view/hugo-parada" target="_blank" rel="noopener">H. Parada</a>. <em>Rapid stabilization of the heat equation with localized disturbance.</em> Accepted for publication in SIAM, Journal of Control and Optimization. <a href="https://hal.science/hal-05421864v1/document" target="_blank" rel="noopener">Preprint</a>.</span></li>
-    </ul></p> -->
-
     <h3>Research articles</h3>
     <ul class="pubs">
-      <li><span class="y">2026</span><span><strong>C. Calle</strong>, <a href="http://pguzman.mat.utfsm.cl/" target="_blank" rel="noopener">P. Guzmán</a>, <a href="https://sites.google.com/view/hugo-parada" target="_blank" rel="noopener">H. Parada</a>. <em>Rapid stabilization of the heat equation with localized disturbance.</em> Accepted for publication in SIAM, Journal of Control and Optimization. <a href="https://hal.science/hal-05421864v1/document" target="_blank" rel="noopener">Preprint</a>.</span></li>
+      <li><span class="y">2026</span><span><strong>C. Calle</strong>, <a href="http://pguzman.mat.utfsm.cl/" target="_blank" rel="noopener">P. Guzmán</a>, <a href="https://sites.google.com/view/hugo-parada" target="_blank" rel="noopener">H. Parada</a>. <em>Rapid stabilization of the heat equation with localized disturbance.</em> Accepted for publication in SIAM Journal on Control and Optimization. <a href="https://hal.science/hal-05421864v1/document" target="_blank" rel="noopener">Preprint</a>.</span></li>
       <li><span class="y">2024</span><span>J. Mayorga-Zambrano, <strong>C. Calle</strong>, J. Castillo-Jaramillo. <a href="https://hal.science/hal-04919733/document" target="_blank" rel="noopener"><em>m-Biharmonic Kirchhoff-type equation with singularity and critical exponent.</em></a> Bulletin of Computational Applied Mathematics.</span></li>
     </ul>
 
@@ -137,13 +190,20 @@ footer{max-width:1000px;margin:2rem auto 0;padding:1.5rem;border-top:1px solid v
     </ul>
   </section>
 
+  <!-- Collaborators section: work in progress. Uncomment together with the tab above.
   <section id="collaborators" role="tabpanel" aria-labelledby="t-collaborators">
-    <h2>Advisors</h2>
+    <h2>Collaborators</h2>
+    <h3>Advisors</h3>
     <ul>
-      <li><a href="http://pguzman.mat.utfsm.cl/" target="_blank" rel="noopener">Patricio Guzmán</a>, Universidad Técnica Federico Santa María</li>
-      <li><a href="https://sites.google.com/view/hugo-parada" target="_blank" rel="noopener">Hugo Parada</a>, Inria Nancy-Grand Est</li>
+      <li><a href="http://pguzman.mat.utfsm.cl/" target="_blank" rel="noopener">Patricio Guzmán</a>, Universidad Técnica Federico Santa María, Chile</li>
+      <li><a href="https://sites.google.com/view/hugo-parada" target="_blank" rel="noopener">Hugo Parada</a>, Inria Nancy – Grand Est, France</li>
+    </ul>
+    <h3>Co-authors</h3>
+    <ul>
+      <li>Juan Mayorga-Zambrano, Yachay Tech University, Ecuador</li>
     </ul>
   </section>
+  -->
 
   <section id="cv" role="tabpanel" aria-labelledby="t-cv">
     <h2>Curriculum vitae</h2>
@@ -230,60 +290,91 @@ footer{max-width:1000px;margin:2rem auto 0;padding:1.5rem;border-top:1px solid v
   </section>
 </main>
 
-<footer>&copy; 2026 Christian Calle. Site under construction.</footer>
+<footer>&copy; <span id="yr">2026</span> Christian A. Calle Cárdenas · Last updated October 2026</footer>
 
 <script>
-/* Tabs (with URL hash support) */
-const tabs=[...document.querySelectorAll('[role="tab"]')], panels=[...document.querySelectorAll('section')];
-function show(name,push){
-  if(!document.getElementById(name))name='about';
-  tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===name));
+/* Tabs: click, arrow keys, and URL hash */
+const tabs=[...document.querySelectorAll('[role="tab"]')], panels=[...document.querySelectorAll('section[role="tabpanel"]')];
+const nav=document.querySelector('nav'), header=document.querySelector('header');
+function show(name,push,focus){
+  if(!panels.some(p=>p.id===name))name='about';
+  tabs.forEach(t=>{const on=t.dataset.tab===name;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;if(on&&focus)t.focus()});
   panels.forEach(p=>p.classList.toggle('active',p.id===name));
   if(push){try{history.replaceState(null,'','#'+name)}catch(e){}}
+  // If the user has scrolled past the hero, bring the new panel's top into view
+  if(push&&scrollY>header.offsetHeight)scrollTo({top:header.offsetHeight});
 }
-document.querySelectorAll('[data-tab]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();show(el.dataset.tab,true);if(el.tagName==='A')window.scrollTo({top:document.querySelector('nav').offsetTop-1})}));
+document.querySelectorAll('[data-tab]').forEach(el=>el.addEventListener('click',e=>{
+  e.preventDefault();show(el.dataset.tab,true);
+  if(el.tagName==='A')scrollTo({top:header.offsetHeight});
+}));
+document.querySelector('[role="tablist"]').addEventListener('keydown',e=>{
+  const i=tabs.indexOf(document.activeElement);if(i<0)return;
+  let j=null;
+  if(e.key==='ArrowRight')j=(i+1)%tabs.length;
+  else if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;
+  else if(e.key==='Home')j=0;
+  else if(e.key==='End')j=tabs.length-1;
+  if(j!==null){e.preventDefault();show(tabs[j].dataset.tab,true,true)}
+});
+addEventListener('hashchange',()=>show(location.hash.slice(1),false));
 show(location.hash.slice(1),false);
 
-/* Theme toggle */
-const root=document.documentElement;
-document.getElementById('themeBtn').addEventListener('click',()=>{
-  const dark=getComputedStyle(root).getPropertyValue('--bg').trim()==='#0b1420';
-  root.setAttribute('data-theme',dark?'light':'dark');
+/* Theme toggle (remembered across visits) */
+const root=document.documentElement, btn=document.getElementById('themeBtn');
+const isDark=()=>root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+function label(){const d=isDark();btn.textContent=d?'Light':'Dark';btn.setAttribute('aria-label','Switch to '+(d?'light':'dark')+' theme')}
+btn.addEventListener('click',()=>{
+  const next=isDark()?'light':'dark';root.setAttribute('data-theme',next);
+  try{localStorage.setItem('theme',next)}catch(e){}
+  label();
 });
+matchMedia('(prefers-color-scheme:dark)').addEventListener?.('change',label);
+label();
 
+document.getElementById('yr').textContent=new Date().getFullYear();
 </script>
 <script>
-/* Hero: heat equation u_t = u_xx, Dirichlet on [0, pi], decaying to zero */
+/* Hero: heat equation u_t = u_xx on [0, pi], Dirichlet BCs.
+   Faint curve: free evolution. Bright curve: a feedback-stabilized solution,
+   modelled as an extra exponential decay e^{-lambda t} on top of the free one. */
 (function(){
   const c=document.getElementById('heat'),ctx=c.getContext('2d');
-  const A=[1,.55,.7,.3,.4], K=A.length, reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const u=(x,t)=>A.reduce((s,a,i)=>s+a*Math.exp(-((i+1)*(i+1))*t)*Math.sin((i+1)*x),0);
-  let W,H,dpr;
+  const A=[1,.55,.7,.3,.4], LAMBDA=9, reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const free=(x,t)=>A.reduce((s,a,i)=>s+a*Math.exp(-((i+1)*(i+1))*t)*Math.sin((i+1)*x),0);
+  const ctl=(x,t)=>Math.exp(-LAMBDA*t)*free(x,t);
+  let W,H,dpr,cur=0,start=null,running=false,raf=0;
   function size(){dpr=devicePixelRatio||1;W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
-  function curve(t,color,lw,alpha){
-    ctx.globalAlpha=alpha;ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.beginPath();
+  function curve(f,t,color,lw,alpha,dash){
+    ctx.globalAlpha=alpha;ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.setLineDash(dash||[]);ctx.beginPath();
     const pad=14,mid=H/2,amp=(H/2-pad)/1.9;
-    for(let i=0;i<=160;i++){const x=Math.PI*i/160,px=pad+(W-2*pad)*i/160,py=mid-amp*u(x,t);i?ctx.lineTo(px,py):ctx.moveTo(px,py)}
-    ctx.stroke();ctx.globalAlpha=1;
+    for(let i=0;i<=160;i++){const x=Math.PI*i/160,px=pad+(W-2*pad)*i/160,py=mid-amp*f(x,t);i?ctx.lineTo(px,py):ctx.moveTo(px,py)}
+    ctx.stroke();ctx.globalAlpha=1;ctx.setLineDash([]);
   }
   function frame(t){
     ctx.clearRect(0,0,W,H);
     ctx.strokeStyle='#3a516b';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(14,H/2);ctx.lineTo(W-14,H/2);ctx.stroke();
-    [.02,.05,.1,.18].forEach((s,i)=>{if(t>s)curve(s,'#7fe0d2',1,.18+i*.05)});
-    curve(t,'#7fe0d2',2.4,1);
+    curve(free,t,'#c5d2de',1.4,.45,[4,4]);
+    [.02,.05,.1,.18].forEach((s,i)=>{if(t>s)curve(ctl,s,'#7fe0d2',1,.18+i*.05)});
+    curve(ctl,t,'#7fe0d2',2.4,1);
   }
-  size();addEventListener('resize',()=>{size();frame(reduce?0:cur)});
-  let cur=0,start=null;
-  if(reduce){frame(0);return}
   function loop(ts){
     if(start===null)start=ts;
     const T=(ts-start)/1000, cyc=T%7, hold=1.0, run=4.5;
     cur=cyc<hold?0:Math.min(.5,(cyc-hold)/run*.5);
     frame(cur);
-    ctx.globalAlpha=1;
-    requestAnimationFrame(loop);
+    if(running)raf=requestAnimationFrame(loop);
   }
-  requestAnimationFrame(loop);
+  function play(){if(!running&&!reduce){running=true;raf=requestAnimationFrame(loop)}}
+  function pause(){running=false;cancelAnimationFrame(raf)}
+  size();frame(0);
+  addEventListener('resize',()=>{size();frame(cur)});
+  if(reduce)return;
+  // Only animate while the canvas is on screen and the tab is visible
+  let onScreen=true;
+  if('IntersectionObserver' in window)new IntersectionObserver(([e])=>{onScreen=e.isIntersecting;onScreen&&!document.hidden?play():pause()}).observe(c);
+  document.addEventListener('visibilitychange',()=>{document.hidden||!onScreen?pause():play()});
+  play();
 })();
 </script>
 </body>
