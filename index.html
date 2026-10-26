@@ -12,6 +12,7 @@
 <meta property="og:image" content="perfil.jpeg">
 <meta name="theme-color" content="#0e1b2c">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1b2c'/%3E%3Cpath d='M4 16c4-10 8-10 12 0s8 6 12 0' stroke='%237fe0d2' stroke-width='2.5' fill='none'/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="fondo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
@@ -52,18 +53,29 @@ a:hover{text-decoration-thickness:2px}
 .skip{position:absolute;left:-999px;top:.5rem;background:var(--surface);color:var(--text);padding:.4rem .8rem;z-index:20;font:500 .9rem var(--sans)}
 .skip:focus{left:.5rem}
 
-/* Hero */
-header{background:linear-gradient(160deg,var(--ink) 0%,var(--ink-2) 100%);color:#eef3f7;position:relative;overflow:hidden}
+/* Hero
+   Background, from top layer to bottom:
+   1) dark veil, strongest on the left so the name stays readable,
+   2) the photo (fondo.jpg),
+   3) the original gradient, shown if the photo fails to load. */
+header{
+  background:
+    linear-gradient(90deg,rgba(11,20,32,.88) 0%,rgba(11,20,32,.62) 50%,rgba(11,20,32,.35) 100%),
+    url('fondo.jpg') center 65%/cover no-repeat,
+    linear-gradient(160deg,var(--ink) 0%,var(--ink-2) 100%);
+  background-color:var(--ink);
+  color:#eef3f7;position:relative;overflow:hidden
+}
 .hero{max-width:1000px;margin:0 auto;padding:4rem 1.5rem 3rem;display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:center}
-.hero h1{font-weight:400;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.08;margin:0 0 1rem;letter-spacing:-.01em}
-.hero p{margin:0 0 .4rem;font-size:1.2rem;color:#c5d2de}
-.hero .meta{font-family:var(--sans);font-size:.92rem;color:#8fa3b6;margin-top:1.2rem}
+.hero h1{font-weight:400;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.08;margin:0 0 1rem;letter-spacing:-.01em;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+.hero p{margin:0 0 .4rem;font-size:1.2rem;color:#d3dee8;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.hero .meta{font-family:var(--sans);font-size:.92rem;color:#a9bacb;margin-top:1.2rem}
 .hero .meta a{color:#7fe0d2}
 .figure{margin:0}
 #heat{width:100%;height:220px;display:block}
 .figure figcaption{font:.78rem var(--sans);color:#8fa3b6;text-align:right;margin-top:.3rem}
 .figure figcaption .ctl{color:#7fe0d2}
-.theme{position:absolute;top:.8rem;right:1rem;background:none;border:1px solid #3a516b;color:#c5d2de;width:2.2rem;height:2.2rem;padding:0;border-radius:50%;cursor:pointer;display:grid;place-items:center}
+.theme{position:absolute;top:.8rem;right:1rem;z-index:1;background:rgba(11,20,32,.45);border:1px solid #3a516b;color:#c5d2de;width:2.2rem;height:2.2rem;padding:0;border-radius:50%;cursor:pointer;display:grid;place-items:center}
 .theme:hover{border-color:var(--sea);color:#fff}
 .theme svg{width:1.1rem;height:1.1rem;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .theme .i-sun{display:none}
@@ -108,6 +120,12 @@ footer{max-width:1000px;margin:2rem auto 0;padding:1.5rem;border-top:1px solid v
 
 @media (max-width:720px){
   .hero{grid-template-columns:1fr;padding:3.2rem 1.2rem 1.5rem}
+  /* On phones the text sits over the whole width, so darken the photo evenly */
+  header{background:
+    linear-gradient(180deg,rgba(11,20,32,.85) 0%,rgba(11,20,32,.6) 100%),
+    url('fondo.jpg') 70% center/cover no-repeat,
+    linear-gradient(160deg,var(--ink) 0%,var(--ink-2) 100%);
+    background-color:var(--ink)}
   #heat{height:150px}
   .about{flex-direction:column;align-items:center;text-align:center}
   .contact .k{min-width:0;margin-right:.3rem}
@@ -120,8 +138,9 @@ footer{max-width:1000px;margin:2rem auto 0;padding:1.5rem;border-top:1px solid v
 /* Print: show every section, drop the chrome — handy for printing the CV */
 @media print{
   header .figure,.theme,nav,.skip{display:none!important}
-  header{background:none;color:#000}
+  header{background:none!important;color:#000}
   .hero{display:block;padding:0 0 1rem}
+  .hero h1,.hero p{text-shadow:none}
   .hero p,.hero .meta{color:#333}
   .js section{display:block!important;animation:none}
   section{page-break-inside:auto;margin-bottom:2rem}
@@ -188,7 +207,7 @@ footer{max-width:1000px;margin:2rem auto 0;padding:1.5rem;border-top:1px solid v
     <h3>Research articles</h3>
     <ul class="pubs">
       <li><span class="y">2026</span><span><strong>C. Calle</strong>, <a href="http://pguzman.mat.utfsm.cl/" target="_blank" rel="noopener">P. Guzmán</a>, <a href="https://sites.google.com/view/hugo-parada" target="_blank" rel="noopener">H. Parada</a>. <em>Rapid stabilization of the heat equation with localized disturbance.</em> Accepted for publication in SIAM Journal on Control and Optimization. <a href="https://hal.science/hal-05421864v1/document" target="_blank" rel="noopener">Preprint</a>.</span></li>
-      <li><span class="y">2024</span><span><a href="https://yachaytech.edu.ec/perfil/juan-mayorga-ph-d/" target="_blank" rel="noopener">J. Mayorga-Zambrano</a>,<strong>C. Calle</strong>, J. Castillo-Jaramillo. <a href="https://hal.science/hal-04919733/document" target="_blank" rel="noopener"><em>m-Biharmonic Kirchhoff-type equation with singularity and critical exponent.</em></a> Bulletin of Computational Applied Mathematics.</span></li>
+      <li><span class="y">2024</span><span><a href="https://yachaytech.edu.ec/perfil/juan-mayorga-ph-d/" target="_blank" rel="noopener">J. Mayorga-Zambrano</a>, <strong>C. Calle</strong>, J. Castillo-Jaramillo. <a href="https://hal.science/hal-04919733/document" target="_blank" rel="noopener"><em>m-Biharmonic Kirchhoff-type equation with singularity and critical exponent.</em></a> Bulletin of Computational Applied Mathematics.</span></li>
     </ul>
 
     <h3>Conference articles</h3>
@@ -301,7 +320,9 @@ footer{max-width:1000px;margin:2rem auto 0;padding:1.5rem;border-top:1px solid v
   </section>
 </main>
 
-<footer>&copy; <span id="yr">2026</span> Christian A. Calle Cárdenas </footer>
+<footer>&copy; <span id="yr">2026</span> Christian A. Calle Cárdenas
+  <!-- Attribution for the free-license background image (author: starline, Magnific/Freepik). -->
+  · Background image by <a href="https://www.magnific.com/es/vector-gratis/fondo-tecnologia-digital-efecto-luz-azul-naranja_10136759.htm" target="_blank" rel="noopener">starline on Magnific (Freepik)</a></footer>
 
 <script>
 /* Tabs: click, arrow keys, and URL hash */
